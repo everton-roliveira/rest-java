@@ -10,111 +10,106 @@ import javax.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "TB_USR", schema = "DB_TESTE")
+@Table(name = "TB_USR")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
-    @NotBlank(message = "Campo ")
+    @NotBlank(message = "Campo 'Nome' é obrigatório")
     @Column(name = "name")
-    private String Name;
+    private String name;
 
     @Column(name = "gender")
-    private Character Gender;
+    private Character gender;
 
+    @NotBlank(message = "Campo 'Email' é obrigatório")
     @Column(name = "email")
-    private String Email;
-
-    @Column(name = "password")
-    private String Password;
+    private String email;
 
     @Column(name = "active")
-    private Boolean IsActive;
+    private Boolean isActive;
+    
+    public User() {}
+    
+    public User(Long id, String name, Character gender, String email, Boolean isActive) {
+    	this.id = id;
+    	this.name = name;
+    	this.gender = gender;
+    	this.email = email;
+    	this.isActive = isActive;
+    }
 
     /**
      * @return the id
      */
     public Long getId() {
-        return Id;
+        return this.id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     /**
      * @return the name
      */
     public String getName() {
-        return Name;
+        return this.name;
     }
 
     /**
      * @param name the name to set
      */
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     /**
      * @return the gender
      */
     public Character getGender() {
-        return Gender;
+        return this.gender;
     }
 
     /**
      * @param gender the gender to set
      */
     public void setGender(Character gender) {
-        Gender = gender;
+        this.gender = gender;
     }
 
     /**
      * @return the email
      */
     public String getEmail() {
-        return Email;
+        return this.email;
     }
 
     /**
      * @param email the email to set
      */
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return Password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        Password = password;
-    }
 
     /**
      * @return the isActive
      */
     public Boolean getIsActive() {
-        return IsActive;
+        return this.isActive;
     }
 
     /**
      * @param isActive the isActive to set
      */
     public void setIsActive(Boolean isActive) {
-        IsActive = isActive;
+        this.isActive = isActive;
     }
 }

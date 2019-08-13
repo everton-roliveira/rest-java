@@ -19,13 +19,8 @@ public class UserService {
         return _userRepository.findAll();
     }
 
-    public User findById(Long id) {
-        Optional<User> optionalUser = _userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        } else {
-            return null;
-        }
+    public Optional<User> findById(Long id) {
+        return _userRepository.findById(id);
     }
 
     public User save(User user) {
@@ -35,4 +30,5 @@ public class UserService {
     public void deleteById(Long id) {
         _userRepository.deleteById(id);
     }
+
 }
