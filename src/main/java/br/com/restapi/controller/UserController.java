@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> create(@Valid @RequestBody User user) {
         User obj = _userService.save(user);
-        return new ResponseEntity<>(obj, HttpStatus.OK);
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
     
     @GetMapping
