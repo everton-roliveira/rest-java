@@ -2,6 +2,9 @@ package br.com.restapi.controller;
 
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -73,6 +76,36 @@ public class UserControllerTest {
 				.post("/users")
 				.contentType(MediaType.APPLICATION_JSON).content(requestJson.toString()))
 		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void getAll() throws Exception {
+		List<User> userList = new ArrayList<>();
+		User user1 = new User();
+		user1.setId(1L);
+		user1.setName("Teste 1");
+		user1.setGender('M');
+		user1.setEmail("teste1@email.com");
+		user1.setIsActive(true);
+		
+		User user2 = new User();
+		user2.setId(2L);
+		user2.setName("Teste 2");
+		user2.setGender('F');
+		user2.setEmail("teste2@email.com");
+		user2.setIsActive(false);
+		
+		userList.add(user1);
+		userList.add(user2);
+		
+		when(service.findAll()).thenReturn(userList);
+		
+		String requestJson = new Gson().toJson(userList);
+		this.mockMvc.perform(MockMvcRequestBuilders
+				.get("/users")
+				.contentType(MediaType.APPLICATION_JSON).content(requestJson.toString()))
+		.andExpect(MockMvcResultMatchers.status().isOk());	
+		
 	}
 
 }
