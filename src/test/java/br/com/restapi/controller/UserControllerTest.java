@@ -59,5 +59,20 @@ public class UserControllerTest {
 				.contentType(MediaType.APPLICATION_JSON).content(requestJson.toString()))
 		.andExpect(MockMvcResultMatchers.status().isCreated());
 	}
+	
+	@Test
+	public void createError() throws Exception {
+		User user = new User();
+		user.setId(1L);
+		user.setGender('M');
+		user.setEmail("teste1@email.com");
+		user.setIsActive(true);
+		
+		String requestJson = new Gson().toJson(user);
+		this.mockMvc.perform(MockMvcRequestBuilders
+				.post("/users")
+				.contentType(MediaType.APPLICATION_JSON).content(requestJson.toString()))
+		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
 
 }
